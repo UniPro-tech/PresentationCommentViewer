@@ -7,3 +7,4 @@ resources:
   - server-deployment.yaml
   - server-service.yaml
   - httproute.yaml
+  - harbor.yaml
