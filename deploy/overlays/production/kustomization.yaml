@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: presen-comeview
+
+resources:
+  - ../../base
+
+images:
+  - name: ghcr.io/YOUR_USER/presen-comeview-server
+    newTag: v1
+
+  - name: ghcr.io/YOUR_USER/presen-comeview-web
+    newTag: v1

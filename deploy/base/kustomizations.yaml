@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: presen-comeview
+
+resources:
+  - namespace.yaml
+  - web-deployment.yaml
+  - web-service.yaml
+  - server-deployment.yaml
+  - server-service.yaml
+  - httproute.yaml
