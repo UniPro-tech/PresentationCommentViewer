@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: presen-comeview
 
 resources:
-  - namespace.yaml
   - web-deployment.yaml
   - web-service.yaml
   - server-deployment.yaml
