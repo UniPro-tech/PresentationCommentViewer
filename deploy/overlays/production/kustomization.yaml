@@ -5,3 +5,4 @@ namespace: presen-comeview
 
 resources:
   - ../../base
+  - imageUpdater.yaml

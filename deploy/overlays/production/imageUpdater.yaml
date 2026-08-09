@@ -1,0 +1,17 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: comeview
+  namespace: argocd
+spec:
+  applicationRefs:
+    - namePattern: "comeview"
+      images:
+        - alias: "web"
+          imageName: "registry.uniproject.jp/official/presen-comeview-front:x.x.x"
+          commonUpdateSettings:
+            updateStrategy: "semver"
+        - alias: "api"
+          imageName: "registry.uniproject.jp/official/presen-comeview-api:x.x.x"
+          commonUpdateSettings:
+            updateStrategy: "semver"
