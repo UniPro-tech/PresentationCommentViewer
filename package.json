@@ -1,0 +1,24 @@
+{
+  "name": "@presen-comeview/root",
+  "version": "0.1.0",
+  "description": "Presentation Comment Viewer display comment on your slide view",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "yuito-it <yuito@yuito-it.jp>",
+  "license": "AGPL-3.0-only",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.20.0",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "devDependencies": {
+    "turbo": "^2.10.8"
+  }
+}

@@ -1,0 +1,16 @@
+services:
+  server:
+    image: presen-server
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+    ports:
+      - "3001:3001"
+
+  web:
+    image: presen-web
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - "8080:80"
