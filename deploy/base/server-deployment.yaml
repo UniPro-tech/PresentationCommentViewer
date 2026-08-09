@@ -20,7 +20,7 @@ spec:
       containers:
         - name: server
 
-          image: ghcr.io/YOUR_USER/presen-comeview-server:v1
+          image: registry.uniproject.jp/official/presen-comeview-api:0.1.0
 
           ports:
             - containerPort: 3001
@@ -33,7 +33,10 @@ spec:
               value: "0.0.0.0"
 
             - name: BASE_URL
-              value: "comeview.example.com"
+              value: "api-comeview.uniproject.jp"
+
+            - name: WEB_URL
+              value: "comeview.uniproject.jp"
 
           resources:
             requests:

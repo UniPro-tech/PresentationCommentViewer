@@ -20,10 +20,14 @@ spec:
       containers:
         - name: web
 
-          image: ghcr.io/YOUR_USER/presen-comeview-web:v1
+          image: registry.uniproject.jp/official/presen-comeview-front:0.1.0
 
           ports:
             - containerPort: 80
+
+          env:
+            - name: VITE_PUBLIC_WS_URL
+              value: wss://api-comeview.uniproject.jp
 
           resources:
             requests:
