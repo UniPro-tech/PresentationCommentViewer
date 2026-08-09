@@ -8,6 +8,7 @@ COPY apps/web/package.json apps/web/package.json
 COPY packages/shared/package.json packages/shared/package.json
 
 ENV CI=true
+ENV VITE_PUBLIC_WS_URL="https://api-comeview.uniproject.jp"
 
 RUN corepack enable
 RUN pnpm install --frozen-lockfile
