@@ -10,7 +10,7 @@
   "files": ["dist", "dist-electron"],
   "mac": {
     "target": [{ "target": "dmg", "arch": ["arm64"] }],
-    "artifactName": "${productName}-Mac-${version}-Installer.${ext}"
+    "artifactName": "presencomeview-Mac-${version}-Installer.${ext}"
   },
   "win": {
     "target": [
@@ -23,10 +23,10 @@
         "arch": ["x64"]
       }
     ],
-    "artifactName": "${productName}-Windows-${version}.${ext}"
+    "artifactName": "presencomeview-Windows-${version}.${ext}"
   },
   "linux": {
     "target": ["AppImage"],
-    "artifactName": "${productName}-Linux-${version}.${ext}"
+    "artifactName": "presencomeview-Linux-${version}.${ext}"
   }
 }
