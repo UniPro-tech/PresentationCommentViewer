@@ -15,7 +15,7 @@ LTの時に横に流れるコメントを出したいなというソフトウェ
 .dmgでインストール後、下記コマンドで回避することができます。
 
 ```bash
-xattr -cr "/Applications/Presentation Comment Viewer.app"
+xattr -cr "/Applications/プレゼンコメビュ.app"
 ```
 
 ## お断り
