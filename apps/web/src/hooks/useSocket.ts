@@ -34,8 +34,10 @@ export function useSocket(roomId: string, wsUri: string) {
     };
     socket.current?.send(JSON.stringify(messageData));
   }
+  const connected = socket.current?.OPEN;
 
   return {
     send,
+    connected,
   };
 }

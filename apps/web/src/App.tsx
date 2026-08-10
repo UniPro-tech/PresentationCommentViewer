@@ -36,7 +36,7 @@ function App() {
     );
   }
 
-  const { send } = useSocket(roomId, wsUri);
+  const { send, connected } = useSocket(roomId, wsUri);
 
   function submit() {
     const value = text.trim();
@@ -53,10 +53,13 @@ function App() {
   return (
     <main className="viewer">
       <div className="container">
-        <header>
+        <header className="room-header">
           <h1>ComeView</h1>
 
-          <p>Room: {roomId}</p>
+          <p className="description">プレゼンにコメントを送信します</p>
+
+          <div className="room-status">{connected ? "接続中" : "再接続中"}</div>
+          <p className="room-id">Room {roomId}</p>
         </header>
 
         <textarea

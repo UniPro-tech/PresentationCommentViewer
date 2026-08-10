@@ -96,3 +96,39 @@ button {
     min-height: 300px;
   }
 }
+
+.room-header {
+  text-align: center;
+}
+
+.room-header h1 {
+  font-size: 36px;
+
+  margin: 0;
+}
+
+.description {
+  margin-top: 8px;
+
+  opacity: 0.7;
+}
+
+.room-status {
+  display: inline-flex;
+
+  margin-top: 16px;
+
+  padding: 8px 16px;
+
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.room-id {
+  text-align: center;
+
+  font-size: 13px;
+
+  opacity: 0.5;
+}
