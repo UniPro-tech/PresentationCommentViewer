@@ -3,7 +3,7 @@ name: Electron Release
 on:
   push:
     tags:
-      - "desktop@*" # Changesets や手動でタグが打たれたら起動
+      - "desktop@*"
 
 permissions:
   contents: write
@@ -56,7 +56,6 @@ jobs:
             apps/desktop/release/*.AppImage
             apps/desktop/release/*.deb
 
-  # 全OSのビルドが終わったら GitHub Release を作成/更新するジョブ
   create-release:
     needs: build
     runs-on: ubuntu-latest
@@ -67,17 +66,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 各OSで作成されたインストーラーをすべてダウンロード
       - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
           path: artifacts
 
-      # GitHub Release にファイルとリリースノートを書き込む
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
           name: ${{ github.ref_name }}
           files: artifacts/**/*
-          generate_release_notes: true # Changesets と併用しても、PR等のログを補完してくれます
+          generate_release_notes: true
