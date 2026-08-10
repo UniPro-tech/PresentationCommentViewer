@@ -1,5 +1,13 @@
 # desktop
 
+## 0.4.5
+
+### Patch Changes
+
+- [`56b1a6c`](https://github.com/UniPro-tech/PresentationCommentViewer/commit/56b1a6c86aaa85c2053fa5c5fe23a0fdb96bee66) Thanks [@yuito-it](https://github.com/yuito-it)! - changesetのバージョンのミスを修正
+
+- [`0785102`](https://github.com/UniPro-tech/PresentationCommentViewer/commit/078510212b25c56342731d7b96a84f0cbbc885cb) Thanks [@yuito-it](https://github.com/yuito-it)! - ci のミスを修正
+
 ## 0.4.4
 
 ### Patch Changes
