@@ -135,6 +135,28 @@ button {
 }
 
 .join-url {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  height: auto;
+  width: 100%;
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  padding: 0;
+}
+
+.join-url button {
+  height: auto;
+  width: auto;
+
   border: none;
   background: transparent;
 

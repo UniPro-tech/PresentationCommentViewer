@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import QRCode from "qrcode";
+import { MdCheck, MdContentCopy } from "react-icons/md";
 
 type Props = {
   roomId: string;
@@ -8,6 +9,7 @@ type Props = {
 
 export function RoomQRCode({ roomId, joinUrl }: Props) {
   const [qr, setQr] = useState<string>();
+  const [copyOK, setCopyOK] = useState<boolean>(false);
 
   useEffect(() => {
     QRCode.toDataURL(joinUrl, {
@@ -22,6 +24,16 @@ export function RoomQRCode({ roomId, joinUrl }: Props) {
     window.roomAPI.openExternal(joinUrl);
   }
 
+  const sleep = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
+  async function copyJoinUrl() {
+    await navigator.clipboard.writeText(joinUrl);
+    setCopyOK(true);
+    await sleep(1000);
+    setCopyOK(false);
+  }
+
   return (
     <section className="room-card">
       {qr && (
@@ -32,9 +44,12 @@ export function RoomQRCode({ roomId, joinUrl }: Props) {
 
       <div className="room-id">{roomId}</div>
 
-      <button className="join-url" onClick={openJoinUrl}>
-        {joinUrl}
-      </button>
+      <div className="join-url">
+        <button onClick={openJoinUrl}>{joinUrl}</button>
+        <button onClick={copyJoinUrl}>
+          {copyOK ? <MdCheck color="#FFF" /> : <MdContentCopy color="#FFF" />}
+        </button>
+      </div>
     </section>
   );
 }
