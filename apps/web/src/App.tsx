@@ -58,7 +58,14 @@ function App() {
 
           <p className="description">プレゼンにコメントを送信します</p>
 
-          <div className="room-status">{connected ? "接続中" : "再接続中"}</div>
+          <div
+            className="room-status"
+            style={{
+              backgroundColor: `${connected ? "#7cff5c" : "#ff5c5c"}`,
+            }}
+          >
+            {connected ? "接続中" : "再接続中"}
+          </div>
           <p className="room-id">Room {roomId}</p>
         </header>
 
