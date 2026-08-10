@@ -14,22 +14,21 @@ spec:
     - api-comeview.uniproject.jp
 
   rules:
-    # WebSocket
+    # Room create API
     - matches:
         - path:
             type: PathPrefix
-            value: /ws
+            value: /rooms
 
       backendRefs:
         - name: server
           port: 3001
 
-    # Room create API
-
+    # WebSocket
     - matches:
         - path:
             type: PathPrefix
-            value: /rooms
+            value: /
 
       backendRefs:
         - name: server
