@@ -3,9 +3,21 @@ name: Docker Build and Push
 on:
   push:
     tags:
-      - "server/v*"
-      - "web/v*"
+      - "server@*"
+      - "web@*"
   workflow_dispatch:
+    inputs:
+      service:
+        description: "対象サービス"
+        required: true
+        type: choice
+        options:
+          - server
+          - web
+      version:
+        description: "バージョン (例: 1.0.0)"
+        required: true
+        type: string
 
 concurrency:
   group: docker-build-${{ github.ref }}
@@ -20,13 +32,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      - uses: actions/checkout@v4
 
       - name: Extract service & version
         run: |
-          REF=${GITHUB_REF#refs/tags/}
-          SERVICE=$(echo $REF | cut -d'/' -f1)
-          VERSION=$(echo $REF | cut -d'/' -f2 | sed 's/^v//')
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            SERVICE="${{ inputs.service }}"
+            VERSION="${{ inputs.version }}"
+          else
+            REF="${GITHUB_REF#refs/tags/}"
+            SERVICE=$(echo "$REF" | cut -d'@' -f1)
+            VERSION=$(echo "$REF" | cut -d'@' -f2 | sed 's/^v//')
+          fi
 
           echo "SERVICE=$SERVICE" >> $GITHUB_ENV
           echo "VERSION=$VERSION" >> $GITHUB_ENV
@@ -43,13 +60,13 @@ jobs:
               echo "IMAGE=registry.uniproject.jp/official/presen-comeview-front" >> $GITHUB_ENV
               ;;
             *)
-              echo "Unknown service"; exit 1;
+              echo "Unknown service: $SERVICE"; exit 1;
           esac
 
-      - uses: docker/setup-buildx-action@d7f5e7f509e45cec5c76c4d5afdd7de93d0b3df5 # v4
-      - uses: docker/setup-qemu-action@96fe6ef7f33517b61c61be40b68a1882f3264fb8 # v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-qemu-action@v3
 
-      - uses: docker/login-action@650006c6eb7dba73a995cc03b0b2d7f5ca915bee # v4
+      - uses: docker/login-action@v3
         with:
           registry: registry.uniproject.jp
           username: robot$github-publisher
@@ -59,15 +76,15 @@ jobs:
         run: |
           VERSION=${{ env.VERSION }}
 
-          MAJOR=$(echo $VERSION | cut -d. -f1)
-          MINOR=$(echo $VERSION | cut -d. -f2)
+          MAJOR=$(echo "$VERSION" | cut -d. -f1)
+          MINOR=$(echo "$VERSION" | cut -d. -f2)
 
           echo "MAJOR=$MAJOR" >> $GITHUB_ENV
           echo "MINOR=$MINOR" >> $GITHUB_ENV
 
       - name: Metadata
         id: meta
-        uses: docker/metadata-action@80c7e94dd9b9319bd5eb7a0e0fe9291e23a2a2e9 # v6
+        uses: docker/metadata-action@v5
         with:
           images: ${{ env.IMAGE }}
           tags: |
@@ -78,12 +95,12 @@ jobs:
             type=sha
           labels: |
             org.opencontainers.image.title="${{ env.SERVICE }}"
-            org.opencontainers.image.vendor="All-Japan Digital Creative Club UniPoroject"
+            org.opencontainers.image.vendor="All-Japan Digital Creative Club UniProject"
             org.opencontainers.image.licenses="AGPL-3.0"
 
       - name: Build & Push
         id: build
-        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./${{ env.DIR }}/Dockerfile
@@ -92,13 +109,11 @@ jobs:
           cache-from: type=registry,ref=${{ env.IMAGE }}:buildcache
           cache-to: type=registry,ref=${{ env.IMAGE }}:buildcache,mode=max
 
-      - uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # v3
+      - uses: sigstore/cosign-installer@v3
 
       - name: Cosign sign
         env:
-          TAGS: ${{ steps.meta.outputs.tags }}
+          IMAGE: ${{ env.IMAGE }}
           DIGEST: ${{ steps.build.outputs.digest }}
         run: |
-          for tag in ${TAGS}; do
-            cosign sign --yes ${tag}@${DIGEST}
-          done
+          cosign sign --yes ${IMAGE}@${DIGEST}

@@ -3,7 +3,7 @@ name: Electron Release
 on:
   push:
     tags:
-      - "desktop/v*"
+      - "desktop@*" # Changesets や手動でタグが打たれたら起動
 
 permissions:
   contents: write
@@ -15,10 +15,8 @@ jobs:
         include:
           - os: macos-latest
             platform: mac
-
           - os: windows-latest
             platform: win
-
           - os: ubuntu-latest
             platform: linux
 
@@ -53,4 +51,33 @@ jobs:
         with:
           name: desktop-${{ matrix.platform }}
           path: |
-            apps/desktop/release/**
+            apps/desktop/release/*.exe
+            apps/desktop/release/*.dmg
+            apps/desktop/release/*.AppImage
+            apps/desktop/release/*.deb
+
+  # 全OSのビルドが終わったら GitHub Release を作成/更新するジョブ
+  create-release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 各OSで作成されたインストーラーをすべてダウンロード
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      # GitHub Release にファイルとリリースノートを書き込む
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          files: artifacts/**/*
+          generate_release_notes: true # Changesets と併用しても、PR等のログを補完してくれます
