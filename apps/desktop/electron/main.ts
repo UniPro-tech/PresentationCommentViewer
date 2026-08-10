@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, screen } from "electron";
+import { app, BrowserWindow, ipcMain, screen, shell } from "electron";
 
 import { fileURLToPath } from "node:url";
 
@@ -65,7 +65,7 @@ async function createControlWindow() {
 
   controlWindow = new BrowserWindow({
     width: 480,
-    height: 720,
+    height: 780,
 
     title: "ComeView",
 
@@ -145,6 +145,10 @@ ipcMain.handle("overlay:stop", () => {
   overlayWindow = null;
 
   return true;
+});
+
+ipcMain.handle("shell:open-external", async (_, url: string) => {
+  await shell.openExternal(url);
 });
 
 app.whenReady().then(() => {

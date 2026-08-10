@@ -10,14 +10,31 @@ export function RoomQRCode({ roomId, joinUrl }: Props) {
   const [qr, setQr] = useState<string>();
 
   useEffect(() => {
-    QRCode.toDataURL(joinUrl).then(setQr).catch(console.error);
+    QRCode.toDataURL(joinUrl, {
+      margin: 2,
+      width: 320,
+    })
+      .then(setQr)
+      .catch(console.error);
   }, [joinUrl]);
 
-  return (
-    <div>
-      {qr && <img src={qr} alt={`Room ${roomId}`} width={240} height={240} />}
+  function openJoinUrl() {
+    window.roomAPI.openExternal(joinUrl);
+  }
 
-      <div>{roomId}</div>
-    </div>
+  return (
+    <section className="room-card">
+      {qr && (
+        <div className="qr">
+          <img src={qr} alt={`Room ${roomId}`} />
+        </div>
+      )}
+
+      <div className="room-id">{roomId}</div>
+
+      <button className="join-url" onClick={openJoinUrl}>
+        {joinUrl}
+      </button>
+    </section>
   );
 }

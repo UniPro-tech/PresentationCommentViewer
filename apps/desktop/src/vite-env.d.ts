@@ -12,6 +12,8 @@ declare global {
       startOverlay(): Promise<boolean>;
 
       stopOverlay(): Promise<boolean>;
+
+      openExternal(url: string): Promise<void>;
     };
   }
 }

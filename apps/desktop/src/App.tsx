@@ -29,16 +29,37 @@ function App() {
   }
 
   return (
-    <main>
-      <h1>ComeView</h1>
+    <main className="control">
+      <section className="header">
+        <h1>ComeView</h1>
+
+        <p>Presentation Comment Viewer</p>
+      </section>
 
       <RoomQRCode roomId={room.id} joinUrl={room.joinUrl} />
 
-      {running ? (
-        <button onClick={stop}>コメント停止</button>
-      ) : (
-        <button onClick={start}>プレゼン開始</button>
-      )}
+      <section className="status">
+        <span
+          className="status-dot"
+          style={{
+            background: running ? "#22c55e" : "#777",
+          }}
+        />
+
+        {running ? "コメント受付中" : "待機中"}
+      </section>
+
+      <section className="actions">
+        {running ? (
+          <button className="stop" onClick={stop}>
+            コメント停止
+          </button>
+        ) : (
+          <button className="start" onClick={start}>
+            プレゼン開始
+          </button>
+        )}
+      </section>
     </main>
   );
 }

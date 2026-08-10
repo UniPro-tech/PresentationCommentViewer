@@ -1,0 +1,196 @@
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  color: #fff;
+}
+
+.control {
+  min-height: 100vh;
+  background: #0f0f12;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 24px;
+
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+
+  text-align: center;
+
+  width: 100%;
+
+  font-size: 28px;
+
+  font-weight: 700;
+}
+
+.header p {
+  margin: 0;
+
+  color: #aaa;
+
+  font-size: 14px;
+}
+
+.room-card {
+  background: linear-gradient(145deg, #1b1b20, #141419);
+
+  border-radius: 20px;
+
+  padding: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 16px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.qr {
+  background: white;
+
+  padding: 16px;
+
+  border-radius: 16px;
+}
+
+.room-id {
+  font-size: 20px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+}
+
+.join-url {
+  width: 100%;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  text-align: center;
+
+  color: #aaa;
+
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: auto;
+}
+
+button {
+  width: 100%;
+
+  height: 56px;
+
+  border: 0;
+
+  border-radius: 16px;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.join-url {
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  padding: 0;
+}
+
+button.start {
+  background: #2563eb;
+
+  color: white;
+}
+
+button.start:hover {
+  background: #3b82f6;
+}
+
+button.stop {
+  background: #dc2626;
+
+  color: white;
+}
+
+button.stop:hover {
+  background: #ef4444;
+}
+
+.status {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  font-size: 14px;
+
+  color: #aaa;
+}
+
+.status-dot {
+  width: 10px;
+
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+}
+
+@media (min-width: 600px) {
+  .control {
+    max-width: 480px;
+
+    margin: auto;
+  }
+}

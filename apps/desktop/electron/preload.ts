@@ -7,4 +7,6 @@ contextBridge.exposeInMainWorld("roomAPI", {
   startOverlay: () => ipcRenderer.invoke("overlay:start"),
 
   stopOverlay: () => ipcRenderer.invoke("overlay:stop"),
+
+  openExternal: (url: string) => ipcRenderer.invoke("shell:open-external", url),
 });
