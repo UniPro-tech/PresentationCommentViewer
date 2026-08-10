@@ -1,5 +1,17 @@
 # desktop
 
+## 0.6.0
+
+### Minor Changes
+
+- [`66afaa9`](https://github.com/UniPro-tech/PresentationCommentViewer/commit/66afaa93e8772ca70968e8aa9530680ee68b5f64) Thanks [@yuito-it](https://github.com/yuito-it)! - feat: トレイを実装してコントロールパネルの再表示と終了に対応
+
+### Patch Changes
+
+- [`8331f89`](https://github.com/UniPro-tech/PresentationCommentViewer/commit/8331f89339cb98130e0d11f88a300d1decdf7600) Thanks [@yuito-it](https://github.com/yuito-it)! - prodctNameを英語にする
+
+- [`3136aed`](https://github.com/UniPro-tech/PresentationCommentViewer/commit/3136aed7889fa8533e9b120f19b142b504cb4221) Thanks [@yuito-it](https://github.com/yuito-it)! - fix: コメントのスタイルから-webkit-text-strokeをコメントアウト
+
 ## 0.5.1
 
 ### Patch Changes
