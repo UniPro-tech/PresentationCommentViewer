@@ -30,7 +30,7 @@ xattr -cr "/Applications/PresenComeView.app"
 > Linuxのデスクトップ環境を持ち合わせていないので、Linuxのテストが全然できていません！！<br/>
 > 動いたよ、報告などをDiscussionに投げていただけると大変助かります🙇‍♀️
 
-> [!INFO]
+> [!NOTE]
 >
 > ## Windows版について
 >
