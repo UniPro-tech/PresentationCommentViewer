@@ -1,5 +1,11 @@
 # desktop
 
+## 0.6.1
+
+### Patch Changes
+
+- [`fe4367f`](https://github.com/UniPro-tech/PresentationCommentViewer/commit/fe4367f4092f15018d8d26bcc3380202f55da185) Thanks [@yuito-it](https://github.com/yuito-it)! - fix: コメントのスタイルを修正し、テキストシャドウを追加
+
 ## 0.6.0
 
 ### Minor Changes
