@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { RoomInfo } from "@presen-comeview/shared";
 import { RoomQRCode } from "./components/RoomQRCode";
 import "./App.css";
+import { DisplaySelector } from "./components/DisplaySelector";
 
 function App() {
   const [room, setRoom] = useState<RoomInfo | null>(null);
@@ -32,11 +33,14 @@ function App() {
     <main className="control">
       <section className="header">
         <h1>ComeView</h1>
-
         <p>Presentation Comment Viewer</p>
       </section>
 
-      <RoomQRCode roomId={room.id} joinUrl={room.joinUrl} />
+      <section className="settings">
+        <RoomQRCode roomId={room.id} joinUrl={room.joinUrl} />
+
+        <DisplaySelector />
+      </section>
 
       <section className="status">
         <span

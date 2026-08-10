@@ -10,3 +10,9 @@ contextBridge.exposeInMainWorld("roomAPI", {
 
   openExternal: (url: string) => ipcRenderer.invoke("shell:open-external", url),
 });
+
+contextBridge.exposeInMainWorld("displayAPI", {
+  list: () => ipcRenderer.invoke("display:list"),
+
+  select: (id: number) => ipcRenderer.invoke("display:set", id),
+});

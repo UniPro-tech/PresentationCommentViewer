@@ -189,8 +189,88 @@ button.stop:hover {
 
 @media (min-width: 600px) {
   .control {
-    max-width: 480px;
+    max-width: full;
 
     margin: auto;
+  }
+}
+
+.display-card {
+  width: 100%;
+
+  background: linear-gradient(145deg, #1b1b20, #141419);
+
+  border-radius: 20px;
+
+  padding: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+.display-card h2 {
+  margin: 0;
+
+  font-size: 18px;
+}
+
+.display-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.display-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 12px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  background: #202026;
+}
+
+.display-item.selected {
+  outline: 2px solid #2563eb;
+}
+
+.display-item input {
+  width: 18px;
+
+  height: 18px;
+}
+
+.display-item p {
+  margin: 4px 0 0;
+
+  color: #aaa;
+
+  font-size: 12px;
+}
+
+.settings {
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 16px;
+}
+
+@media (min-width: 700px) {
+  .settings {
+    grid-template-columns: 1fr 1fr;
+
+    align-items: stretch;
   }
 }

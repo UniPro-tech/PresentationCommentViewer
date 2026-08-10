@@ -18,6 +18,8 @@ let controlWindow: BrowserWindow | null = null;
 
 let overlayWindow: BrowserWindow | null = null;
 
+let selectedDisplayId: number | null = null;
+
 const PUBLIC_SERVER_URL = app.isPackaged
   ? "https://api-comeview.uniproject.jp"
   : (process.env.PUBLIC_SERVER_URL ?? "http://127.0.0.1:3001");
@@ -64,8 +66,8 @@ async function createControlWindow() {
   }
 
   controlWindow = new BrowserWindow({
-    width: 480,
-    height: 780,
+    width: 820,
+    height: 800,
 
     title: "ComeView",
 
@@ -92,9 +94,13 @@ function createOverlayWindow() {
     return;
   }
 
-  const display = screen.getPrimaryDisplay();
+  const displays = screen.getAllDisplays();
 
-  const { x, y, width, height } = display.workArea;
+  const display =
+    displays.find((d) => d.id === selectedDisplayId) ??
+    screen.getPrimaryDisplay();
+
+  const { x, y, width, height } = display.bounds;
 
   overlayWindow = new BrowserWindow({
     x,
@@ -149,6 +155,26 @@ ipcMain.handle("overlay:stop", () => {
 
 ipcMain.handle("shell:open-external", async (_, url: string) => {
   await shell.openExternal(url);
+});
+
+ipcMain.handle("display:list", () => {
+  return screen.getAllDisplays().map((display, index) => ({
+    id: display.id,
+
+    index,
+
+    label: `Display ${index + 1}`,
+
+    bounds: display.bounds,
+
+    size: display.size,
+  }));
+});
+
+ipcMain.handle("display:set", (_, id: number) => {
+  selectedDisplayId = id;
+
+  return true;
 });
 
 app.whenReady().then(() => {
