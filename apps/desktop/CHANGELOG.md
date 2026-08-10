@@ -1,5 +1,11 @@
 # desktop
 
+## 0.7.0
+
+### Minor Changes
+
+- [`56c4c95`](https://github.com/UniPro-tech/PresentationCommentViewer/commit/56c4c9591d31039d352994a07253f5347eb96efb) Thanks [@yuito-it](https://github.com/yuito-it)! - feat: モニターウィンドウを追加し、コメントの受信機能を実装
+
 ## 0.6.1
 
 ### Patch Changes
