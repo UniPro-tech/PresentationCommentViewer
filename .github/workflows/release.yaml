@@ -19,7 +19,7 @@ jobs:
     steps:
       # 1. GitHub App から動的にトークンを発行
       - name: Generate GitHub App Token
-        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3
         id: app-token
         with:
           app-id: ${{ secrets.APP_ID }}
