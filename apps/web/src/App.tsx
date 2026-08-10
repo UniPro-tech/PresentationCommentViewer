@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSocket } from "./hooks/useSocket";
+import "./App.css";
 
 function getRoomId() {
   const match = window.location.pathname.match(/^\/r\/([^/]+)$/);
@@ -25,38 +26,53 @@ function App() {
   const [text, setText] = useState("");
 
   const roomId = getRoomId();
-
   const wsUri = getWsUri();
 
   if (!roomId || !wsUri) {
-    return null;
+    return (
+      <main className="error">
+        <p>Room情報がありません</p>
+      </main>
+    );
   }
 
   const { send } = useSocket(roomId, wsUri);
 
   function submit() {
-    if (!text.trim()) {
+    const value = text.trim();
+
+    if (!value) {
       return;
     }
 
-    send(text);
+    send(value);
 
     setText("");
   }
 
   return (
-    <main>
-      <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            submit();
-          }
-        }}
-      />
+    <main className="viewer">
+      <div className="container">
+        <header>
+          <h1>ComeView</h1>
 
-      <button onClick={submit}>送信</button>
+          <p>Room: {roomId}</p>
+        </header>
+
+        <textarea
+          value={text}
+          placeholder="コメントを入力..."
+          onChange={(e) => setText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              submit();
+            }
+          }}
+        />
+
+        <button onClick={submit}>送信</button>
+      </div>
     </main>
   );
 }
