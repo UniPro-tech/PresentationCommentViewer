@@ -126,6 +126,10 @@ function createOverlayWindow() {
 
   overlayWindow.setAlwaysOnTop(true, "screen-saver");
 
+  overlayWindow.setVisibleOnAllWorkspaces(true, {
+    visibleOnFullScreen: true,
+  });
+
   overlayWindow.setIgnoreMouseEvents(true);
 
   overlayWindow.on("closed", () => {
