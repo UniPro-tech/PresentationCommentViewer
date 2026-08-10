@@ -274,3 +274,11 @@ function sendRoomStatus(room: Room) {
 httpServer.listen(port, host, () => {
   console.log(`[SERVER STARTED] ${httpProtocol}://${host}:${port}`);
 });
+
+// Graceful Shutdown
+process.on("SIGTERM", () => {
+  console.log("shutdown");
+  httpServer.close(() => {
+    process.exit(0);
+  });
+});
