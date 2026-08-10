@@ -4,7 +4,7 @@ LTの時に横に流れるコメントを出したいなというソフトウェ
 
 ## 使い方
 
-1. (リリースページをまだ用意できていないので、) [ここ](https://github.com/UniPro-tech/PresentationCommentViewer/actions/workflows/electron-build.yaml) の最新のバージョンを開き、artifactからダウンロードする
+1. リリースの最新のバージョンを開き、artifactからダウンロードする
 2. 開いてQRコードをやURLを共有する
 
 ## トラブルシューティング
@@ -15,7 +15,7 @@ LTの時に横に流れるコメントを出したいなというソフトウェ
 .dmgでインストール後、下記コマンドで回避することができます。
 
 ```bash
-xattr -cr "/Applications/プレゼンコメビュ.app"
+xattr -cr "/Applications/PresenComeView.app"
 ```
 
 ## お断り
