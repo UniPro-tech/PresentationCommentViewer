@@ -1,4 +1,4 @@
-# Presentation Comment Viewer
+# Presentation Comment Viewer - プレゼンコメビュ
 
 LTの時に横に流れるコメントを出したいなというソフトウェアです。
 
