@@ -1,15 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+
+import App from "./App";
+import Overlay from "./Overlay";
+
 import "./index.css";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <App />,
-  </React.StrictMode>,
-);
+const isOverlay = window.location.hash === "#/overlay";
 
-// Use contextBridge
-window.ipcRenderer.on("main-process-message", (_event, message) => {
-  console.log(message);
-});
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>{isOverlay ? <Overlay /> : <App />}</React.StrictMode>,
+);

@@ -1,0 +1,33 @@
+.overlay {
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.comment {
+  position: absolute;
+
+  right: -500px;
+  top: 100px;
+
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+
+  white-space: nowrap;
+
+  animation: comment-scroll 8s linear forwards;
+}
+
+@keyframes comment-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-2500px);
+  }
+}

@@ -8,6 +8,10 @@ declare global {
   interface Window {
     roomAPI: {
       getInfo(): Promise<RoomInfo>;
+
+      startOverlay(): Promise<boolean>;
+
+      stopOverlay(): Promise<boolean>;
     };
   }
 }
