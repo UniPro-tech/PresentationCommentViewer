@@ -1,0 +1,25 @@
+name: Standard Release Publish
+
+on:
+  push:
+    tags:
+      - "server@*"
+      - "web@*"
+
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Publish Release (Undraft)
+        run: gh release edit "${{ github.ref_name }}" --draft=false
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
