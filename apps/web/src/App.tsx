@@ -63,12 +63,6 @@ function App() {
           value={text}
           placeholder="コメントを入力..."
           onChange={(e) => setText(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
-              e.preventDefault();
-              submit();
-            }
-          }}
         />
 
         <button onClick={submit}>送信</button>
