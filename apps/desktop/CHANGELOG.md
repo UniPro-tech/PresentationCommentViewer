@@ -1,5 +1,11 @@
 # desktop
 
+## 0.4.6
+
+### Patch Changes
+
+- [`7043b34`](https://github.com/UniPro-tech/PresentationCommentViewer/commit/7043b3465597768bf446f790faf4230920656052) Thanks [@yuito-it](https://github.com/yuito-it)! - ciのテスト
+
 ## 0.4.5
 
 ### Patch Changes
