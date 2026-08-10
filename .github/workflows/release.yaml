@@ -47,10 +47,11 @@ jobs:
 
       # 3. 発行したトークンを Changeset に渡す
       - name: Create Release PR or Publish
-        uses: changesets/action@v1
+        uses: yuito-it/changesets-action@temp
         with:
-          publish: pnpm changeset tag
-          title: "ci: release packages"
-          commit: "ci: release packages"
+          publish-script: pnpm changeset tag
+          pr-title: "ci: release packages"
+          commit-message: "ci: release packages"
+          github-releases-draft: true
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
