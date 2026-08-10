@@ -1,4 +1,5 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
 import type { Comment } from "../types/comment";
 
 export function useComments() {
@@ -14,6 +15,18 @@ export function useComments() {
     setComments((prev) => [...prev, comment]);
   }, []);
 
+  useEffect(() => {
+    if (!window.commentAPI) {
+      return;
+    }
+
+    const unsubscribe = window.commentAPI.onComment((text) => {
+      addComment(text);
+    });
+
+    return unsubscribe;
+  }, [addComment]);
+
   return {
     comments,
     addComment,
@@ -22,5 +35,6 @@ export function useComments() {
 
 export function getLaneCount() {
   const laneHeight = 60;
+
   return Math.max(1, Math.floor(window.innerHeight / laneHeight));
 }

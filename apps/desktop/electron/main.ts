@@ -24,7 +24,7 @@ const VITE_DEV_SERVER_URL = process.env.VITE_DEV_SERVER_URL;
 const RENDERER_DIST = path.join(process.env.APP_ROOT!, "dist");
 
 let controlWindow: BrowserWindow | null = null;
-
+let monitorWindow: BrowserWindow | null = null;
 let overlayWindow: BrowserWindow | null = null;
 
 let selectedDisplayId: number | null = null;
@@ -68,6 +68,12 @@ function createTray() {
         label: "コントロールウィンドウを表示",
         click: () => {
           createControlWindow();
+        },
+      },
+      {
+        label: "モニターウィンドウを表示",
+        click: () => {
+          createMonitorWindow();
         },
       },
       {
@@ -159,6 +165,53 @@ async function createControlWindow() {
   });
 
   loadRenderer(controlWindow, "#/control");
+  createMonitorWindow();
+}
+async function createMonitorWindow() {
+  if (monitorWindow) {
+    if (monitorWindow.isDestroyed()) {
+      monitorWindow = null;
+    } else {
+      monitorWindow.show();
+      monitorWindow.focus();
+      return;
+    }
+  }
+
+  monitorWindow = new BrowserWindow({
+    width: 360,
+    height: 900,
+
+    minWidth: 300,
+    minHeight: 500,
+
+    title: "プレゼンコメビュ - Monitor",
+
+    backgroundColor: "#181818",
+
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      contextIsolation: true,
+      nodeIntegration: false,
+      backgroundThrottling: false,
+    },
+  });
+
+  monitorWindow.on("close", (e) => {
+    if (!isQuitting) {
+      e.preventDefault();
+
+      if (!monitorWindow?.isDestroyed()) {
+        monitorWindow?.hide();
+      }
+    }
+  });
+
+  monitorWindow.on("closed", () => {
+    monitorWindow = null;
+  });
+
+  loadRenderer(monitorWindow, "#/monitor");
 }
 
 function createOverlayWindow() {
@@ -253,6 +306,12 @@ ipcMain.handle("display:set", (_, id: number) => {
   selectedDisplayId = id;
 
   return true;
+});
+
+ipcMain.on("comment-received", (_event, text: string) => {
+  if (monitorWindow && !monitorWindow.isDestroyed()) {
+    monitorWindow.webContents.send("comment-received", text);
+  }
 });
 
 app.whenReady().then(() => {

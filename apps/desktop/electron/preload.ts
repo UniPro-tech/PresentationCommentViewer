@@ -1,5 +1,4 @@
 import { contextBridge, ipcRenderer } from "electron";
-contextBridge.exposeInMainWorld("commentAPI", {});
 
 contextBridge.exposeInMainWorld("roomAPI", {
   getInfo: () => ipcRenderer.invoke("room:get-info"),
@@ -15,4 +14,22 @@ contextBridge.exposeInMainWorld("displayAPI", {
   list: () => ipcRenderer.invoke("display:list"),
 
   select: (id: number) => ipcRenderer.invoke("display:set", id),
+});
+
+contextBridge.exposeInMainWorld("commentAPI", {
+  sendComment(text: string) {
+    ipcRenderer.send("comment-received", text);
+  },
+
+  onComment(callback: (text: string) => void) {
+    const handler = (_event: Electron.IpcRendererEvent, text: string) => {
+      callback(text);
+    };
+
+    ipcRenderer.on("comment-received", handler);
+
+    return () => {
+      ipcRenderer.removeListener("comment-received", handler);
+    };
+  },
 });

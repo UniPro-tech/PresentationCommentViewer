@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useComments } from "../hooks/useComments";
 import { Comment } from "./Comment";
+
 import {
   JoinRoomMessage,
   RoomInfo,
@@ -27,19 +28,23 @@ export function CommentLayer({ room }: { room: RoomInfo }) {
       const message = JSON.parse(event.data) as ServerMessage;
 
       if (message.type === "comment") {
+        // Overlay表示用
         addComment(message.text);
+
+        // Monitorへ転送
+        window.commentAPI.sendComment(message.text);
       }
     };
 
     return () => {
       ws.close();
     };
-  }, [room.id, room.desktopWebsocketUrl]);
+  }, [room.id, room.desktopWebsocketUrl, addComment]);
 
   return (
     <>
       {comments.map((comment) => (
-        <Comment comment={comment} key={comment.id} />
+        <Comment key={comment.id} comment={comment} />
       ))}
     </>
   );
