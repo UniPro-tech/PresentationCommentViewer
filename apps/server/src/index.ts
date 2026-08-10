@@ -18,7 +18,7 @@ const port = Number(process.env.PORT) || 3001;
 const host = process.env.HOST || "0.0.0.0";
 
 const baseURL = process.env.BASE_URL || "127.0.0.1:3001";
-const webURL = process.env.WEB_URL || "127.0.0.1:5137";
+const webURL = process.env.WEB_URL || "127.0.0.1:5173";
 
 const wsProtocol = process.env.INSECURE ? "ws" : "wss";
 const httpProtocol = process.env.INSECURE ? "http" : "https";
