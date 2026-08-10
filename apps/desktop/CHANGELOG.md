@@ -1,5 +1,11 @@
 # desktop
 
+## 0.4.8
+
+### Patch Changes
+
+- [`7efd142`](https://github.com/UniPro-tech/PresentationCommentViewer/commit/7efd14291515379464e41e5dc29322840884f8dd) Thanks [@yuito-it](https://github.com/yuito-it)! - citest
+
 ## 0.4.7
 
 ### Patch Changes
