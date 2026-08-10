@@ -1,5 +1,11 @@
 # desktop
 
+## 0.5.1
+
+### Patch Changes
+
+- [`d0726dc`](https://github.com/UniPro-tech/PresentationCommentViewer/commit/d0726dc0d1a6bd1b47b3fd2322a8e2d32e7a8484) Thanks [@yuito-it](https://github.com/yuito-it)! - ファイル名のミスを修正
+
 ## 0.5.0
 
 ### Minor Changes
