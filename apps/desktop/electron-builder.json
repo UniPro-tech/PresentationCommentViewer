@@ -18,7 +18,7 @@
         "arch": ["x64"]
       }
     ],
-    "artifactName": "${productName}-Windows-${version}-Setup.${ext}"
+    "artifactName": "${productName}-Windows-${version}.${ext}"
   },
   "linux": {
     "target": ["AppImage"],
