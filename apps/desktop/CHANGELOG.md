@@ -1,5 +1,11 @@
 # desktop
 
+## 0.4.11
+
+### Patch Changes
+
+- [`067a3f8`](https://github.com/UniPro-tech/PresentationCommentViewer/commit/067a3f817e2fc2299641f704e9124e03892627bd) Thanks [@yuito-it](https://github.com/yuito-it)! - targetのミスを修正
+
 ## 0.4.10
 
 ### Patch Changes
