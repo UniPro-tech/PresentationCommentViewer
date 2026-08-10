@@ -9,7 +9,7 @@ export function Comment({ comment }: Props) {
     <div
       className="comment"
       style={{
-        top: `${comment.lane * 60}px`,
+        top: `${comment.lane * 60 * window.devicePixelRatio}px`,
       }}
     >
       {comment.text}

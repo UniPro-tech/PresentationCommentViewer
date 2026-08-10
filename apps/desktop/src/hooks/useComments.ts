@@ -8,7 +8,7 @@ export function useComments() {
     const comment: Comment = {
       id: crypto.randomUUID(),
       text,
-      lane: Math.floor(Math.random() * 5),
+      lane: Math.floor(Math.random() * getLaneCount()),
     };
 
     setComments((prev) => [...prev, comment]);
@@ -18,4 +18,9 @@ export function useComments() {
     comments,
     addComment,
   };
+}
+
+export function getLaneCount() {
+  const laneHeight = 60;
+  return Math.max(1, Math.floor(window.innerHeight / laneHeight));
 }
