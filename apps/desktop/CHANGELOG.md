@@ -1,5 +1,11 @@
 # desktop
 
+## 0.4.4
+
+### Patch Changes
+
+- [`e8a3a49`](https://github.com/UniPro-tech/PresentationCommentViewer/commit/e8a3a495ba28a9fabcefdeaaaa2cb3d7b55346c3) Thanks [@yuito-it](https://github.com/yuito-it)! - ci: 実行されないバグの修正
+
 ## 0.4.3
 
 ### Patch Changes
