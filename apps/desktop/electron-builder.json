@@ -2,10 +2,11 @@
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
   "appId": "jp.uniproject.comeview",
   "asar": true,
-  "productName": "Presentation Comment Viewer",
+  "productName": "プレゼンコメビュ",
   "directories": {
     "output": "release/${version}"
   },
+  "icon": "public/icon.png",
   "files": ["dist", "dist-electron"],
   "mac": {
     "target": [{ "target": "dmg", "arch": ["arm64"] }],
@@ -15,6 +16,10 @@
     "target": [
       {
         "target": "portable",
+        "arch": ["x64"]
+      },
+      {
+        "target": "msi",
         "arch": ["x64"]
       }
     ],

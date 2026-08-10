@@ -51,10 +51,10 @@ jobs:
         with:
           name: desktop-${{ matrix.platform }}
           path: |
-            apps/desktop/release/**/*.exe
-            apps/desktop/release/**/*.dmg
-            apps/desktop/release/**/*.AppImage
-            apps/desktop/release/**/*.deb
+            apps/desktop/release/**/プレゼンコメビュ*.exe
+            apps/desktop/release/**/プレゼンコメビュ*.msi
+            apps/desktop/release/**/プレゼンコメビュ*.dmg
+            apps/desktop/release/**/プレゼンコメビュ*.AppImage
 
   create-release:
     needs: build

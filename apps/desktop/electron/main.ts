@@ -69,7 +69,7 @@ async function createControlWindow() {
     width: 820,
     height: 800,
 
-    title: "ComeView",
+    title: "プレゼンコメビュ - Controller",
 
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
