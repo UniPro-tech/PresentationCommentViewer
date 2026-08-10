@@ -53,5 +53,4 @@ jobs:
           pr-title: "ci: release packages"
           commit-message: "ci: release packages"
           github-releases-draft: true
-        env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          github-token: ${{ steps.app-token.outputs.token }}
