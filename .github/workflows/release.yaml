@@ -47,7 +47,7 @@ jobs:
 
       # 3. 発行したトークンを Changeset に渡す
       - name: Create Release PR or Publish
-        uses: yuito-it/changesets-action@temp
+        uses: yuito-it/changesets-action@7c8ba15225a7d42db2d15374270813fa52696aae # temp
         with:
           publish-script: pnpm changeset tag
           pr-title: "ci: release packages"
